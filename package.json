@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "collections": "^5.1.9"
+    "collections": "^5.1.9",
+    "md5": "^2.2.1"
   }
 }
