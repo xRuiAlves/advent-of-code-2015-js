@@ -8,7 +8,6 @@ const main = (data) => {
     });
     const result = eval("a");
     console.log(result)
-    
 }
 
 const eval = (exp) => {
@@ -50,7 +49,5 @@ const eval = (exp) => {
         return res;
     }
 }
-
-
 
 reader.readFile("input", main);
