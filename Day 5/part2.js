@@ -1,5 +1,4 @@
 const reader = require("../utils/reader");
-const md5 = require('md5');
 
 const main = (data) => {
     let num_nice_strings = 0;
