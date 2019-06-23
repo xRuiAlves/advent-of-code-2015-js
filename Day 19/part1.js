@@ -5,7 +5,7 @@ const main = (data) => {
     const decomposed_molecule = decomposeMolecule(input_molecule);
     const decompositions = {};
     for (let i = 0; i < data.length - 2; i++) {
-        [lhs, _, rhs]= data[i].split(" ");
+        const [lhs, _, rhs]= data[i].split(" ");
         if (!decompositions[lhs]) {
             decompositions[lhs] = [];
         }
@@ -15,13 +15,11 @@ const main = (data) => {
     const productions = new Set();
     for (let i in decomposed_molecule) {
         const atom = decomposed_molecule[i];
-        if (decompositions[atom]) {
-            decompositions[atom].forEach(production => {
-                const new_molecule = [...decomposed_molecule];
-                new_molecule[i] = production;
-                productions.add(new_molecule.join(""));
-            });
-        }
+        decompositions[atom] && decompositions[atom].forEach(production => {
+            const new_molecule = [...decomposed_molecule];
+            new_molecule[i] = production;
+            productions.add(new_molecule.join(""));
+        });
     }
     console.log(productions.size);
 }
