@@ -5,7 +5,7 @@ let bestQE = Infinity;
 let max_size;
 const main = (data) => {
     const presents = data.map(entry => parseInt(entry));
-    max_size = presents.reduce((prev, curr) => prev + curr)/3;
+    max_size = presents.reduce((prev, curr) => prev + curr)/4;
     while (bestQE === Infinity && min_num_parts_found1 < presents.length - 2) {
         min_num_parts_found1++;
         getDivision([...presents], [], 0, 0, 1);
@@ -26,19 +26,19 @@ const getDivision = (pool, chosen, count, pool_index, depth) => {
         return;
     }
     if (count === max_size) {
-        if (depth === 1) {
-            let res = getDivision(pool, [], 0, 0, 2);
-            if (res) {
+        if (depth < 3) {
+            let res = getDivision(pool, [], 0, 0, depth+1);
+            if (res && depth === 1) {
                 bestQE = Math.min(bestQE, getQE(chosen))
             }
-        } 
+        }
         return true;
     }
     for (let i = pool_index; i < pool.length; i++) {
         const [val] = pool.splice(i, 1);
         chosen.push(val);
         let res = getDivision(pool, chosen, count + val, i, depth);
-        if (res && depth === 2) {
+        if (res && depth !== 1) {
             return true;
         }
         chosen.pop();
